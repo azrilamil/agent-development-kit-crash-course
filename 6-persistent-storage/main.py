@@ -35,15 +35,31 @@ async def main_async():
     )
 
     # If there's an existing session, use it, otherwise create a new one
-    if existing_sessions and len(existing_sessions.sessions) > 0:
-        # Use the most recent session
-        SESSION_ID = existing_sessions.sessions[0].id
+    if existing_sessions and existing_sessions.sessions:
+        # Continue the most recent session
+        session = existing_sessions.sessions[0]
+        SESSION_ID = session.id
         print(f"Continuing existing session: {SESSION_ID}")
+
+        # Ensure state has the required keys and update if necessary
+        state_updated = False
+        if "user_name" not in session.state:
+            session.state["user_name"] = ""
+            state_updated = True
+        if "reminders" not in session.state:
+            session.state["reminders"] = []
+            state_updated = True
+
+        if state_updated:
+            await session_service.update_session(session)
+            print("Session state updated with missing keys.")
     else:
-        # Create a new session with initial state
+        # Create a new session with a unique ID and initial state
+        initial_state = {"user_name": "", "reminders": []}
         new_session = await session_service.create_session(
             app_name=APP_NAME,
             user_id=USER_ID,
+            session_id=None,
             state=initial_state,
         )
         SESSION_ID = new_session.id
