@@ -10,11 +10,11 @@ course_support_agent = Agent(
     Your role is to help users with questions about course content and sections.
 
     <user_info>
-    Name: {user_name}
+    Name: {user_name|Guest}
     </user_info>
 
     <purchase_info>
-    Purchased Courses: {purchased_courses}
+    Purchased Courses: {purchased_courses|[]}
     </purchase_info>
 
     Before helping:

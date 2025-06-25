@@ -78,15 +78,15 @@ order_agent = Agent(
     Your role is to help users view their purchase history, course access, and process refunds.
 
     <user_info>
-    Name: {user_name}
+    Name: {user_name|Guest}
     </user_info>
 
     <purchase_info>
-    Purchased Courses: {purchased_courses}
+    Purchased Courses: {purchased_courses|[]}
     </purchase_info>
 
     <interaction_history>
-    {interaction_history}
+    {interaction_history|No previous interactions}
     </interaction_history>
 
     When users ask about their purchases:

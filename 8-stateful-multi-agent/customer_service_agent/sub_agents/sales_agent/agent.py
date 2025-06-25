@@ -65,15 +65,15 @@ sales_agent = Agent(
     for the Fullstack AI Marketing Platform course.
 
     <user_info>
-    Name: {user_name}
+    Name: {user_name|Guest}
     </user_info>
 
     <purchase_info>
-    Purchased Courses: {purchased_courses}
+    Purchased Courses: {purchased_courses|[]}
     </purchase_info>
 
     <interaction_history>
-    {interaction_history}
+    {interaction_history|No previous interactions}
     </interaction_history>
 
     Course Details:
@@ -90,7 +90,7 @@ sales_agent = Agent(
        - Remind them they have access
        - Ask if they need help with any specific part
        - Direct them to course support for content questions
-    
+
     3. If they don't own it:
        - Explain the course value proposition
        - Mention the price ($149)

@@ -29,17 +29,17 @@ customer_service_agent = Agent(
 
     **User Information:**
     <user_info>
-    Name: {user_name}
+    Name: {user_name|Guest}
     </user_info>
 
     **Purchase Information:**
     <purchase_info>
-    Purchased Courses: {purchased_courses}
+    Purchased Courses: {purchased_courses|[]}
     </purchase_info>
 
     **Interaction History:**
     <interaction_history>
-    {interaction_history}
+    {interaction_history|No previous interactions}
     </interaction_history>
 
     You have access to the following specialized agents:
@@ -78,3 +78,6 @@ customer_service_agent = Agent(
     sub_agents=[policy_agent, sales_agent, course_support_agent, order_agent],
     tools=[],
 )
+
+# ADK expects a root_agent variable
+root_agent = customer_service_agent
